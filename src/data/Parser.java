@@ -7,6 +7,7 @@ import data.Page;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+ 
 
 
 public class Parser {
@@ -15,17 +16,21 @@ public class Parser {
 
 	
 	public Parser() {
+		
+		try {
+			reader = new BufferedReader(new FileReader(new File("processes.txt")));
+		}catch(FileNotFoundException ex) {
+			System.out.println("File not found");
+		}
 	}
 	
 	public Parser(String fileName) {
 				
 		try {
 			reader = new BufferedReader(new FileReader(new File(fileName)));
-
 		}catch(FileNotFoundException ex) {
-			
+			System.out.println("File not found");
 		}
-		
 	}
 	
 	
@@ -36,10 +41,13 @@ public class Parser {
 		try {
 			String text;
 		    while ((text = reader.readLine()) != null) {
+		    		
+		    		if(text == "process") {
+		    		}
 		        fileData.add(Integer.parseInt(text));
 		    }
-		} catch (FileNotFoundException e) {
-		    e.printStackTrace();
+		} catch (FileNotFoundException ex) {
+		    ex.printStackTrace();
 		} catch (IOException e) {
 		    e.printStackTrace();
 		} finally {
