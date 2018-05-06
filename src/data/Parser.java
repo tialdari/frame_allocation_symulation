@@ -7,62 +7,66 @@ import data.Page;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
- 
+import java.util.Scanner; 
 
 
 public class Parser {
 	
-	private 	BufferedReader reader;
+	private 	Scanner scanner;
 
 	
 	public Parser() {
 		
+		File file = new File("processes.txt");
 		try {
-			reader = new BufferedReader(new FileReader(new File("processes.txt")));
+			scanner = new Scanner(file);
 		}catch(FileNotFoundException ex) {
 			System.out.println("File not found");
 		}
 	}
 	
 	public Parser(String fileName) {
-				
+		
+		File file = new File(fileName);
 		try {
-			reader = new BufferedReader(new FileReader(new File(fileName)));
+			scanner = new Scanner(file);
 		}catch(FileNotFoundException ex) {
 			System.out.println("File not found");
 		}
 	}
 	
 	
-	public ArrayList<Integer> read(){
+	public void read(){
 		
-		ArrayList<Integer> fileData = new ArrayList<Integer>();
+		Process [] processes = new Process [11];
+		int processNumber = 0;
 		
-		try {
-			String text;
-		    while ((text = reader.readLine()) != null) {
-		    		
-		    		if(text == "process") {
-		    		}
-		        fileData.add(Integer.parseInt(text));
-		    }
-		} catch (FileNotFoundException ex) {
-		    ex.printStackTrace();
-		} catch (IOException e) {
-		    e.printStackTrace();
-		} finally {
-		    try {
-		        if (reader != null) {
-		            reader.close();
-		        }
-		    } catch (IOException e) {
-		    }
+		while(scanner.hasNext()) {
+			
+				scanner.skip("process");
+				scanner.nextInt();
+				processes[processNumber] = new Process(); 
+				processes[processNumber].getPagesSequence().add(new Page(scanner.nextInt()));
+				System.out.println(processes[processNumber].getPagesSequence().get(0).getPageNumber());
+				
+				
+				processNumber++;
+				break;
 		}
-
-	return fileData;
 		
 	}
 
-	
 	 
 }
+
+
+
+
+
+
+
+
+
+
+
+
