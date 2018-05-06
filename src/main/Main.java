@@ -1,4 +1,4 @@
-package frame_allocation_sym;
+package main;
 
 public class Main {
 
