@@ -40,22 +40,34 @@ public class Parser {
 		
 		Process [] processes = new Process [11];
 		int processNumber = 0;
+		int nextNumber;
+		
+
 		
 		while(scanner.hasNext()) {
 			
-				scanner.skip("process");
-				scanner.nextInt();
-				processes[processNumber] = new Process(); 
-				processes[processNumber].getPagesSequence().add(new Page(scanner.nextInt()));
-				System.out.println(processes[processNumber].getPagesSequence().get(0).getPageNumber());
-				
-				
+			 if(scanner.nextLine().startsWith("process")) {
 				processNumber++;
-				break;
-		}
+				System.out.println("This is a process no: " + processNumber);
+				processes[processNumber] = new Process(); 		
+
+			}
+				nextNumber = scanner.nextInt();
+				processes[processNumber].getPagesSequence().add(new Page(nextNumber));
+				System.out.println("This is a page call of a process no " + processNumber + " : " + nextNumber);
+
+		 }
 		
 	}
-
+	/*
+	 * while(scanner.hasNext()) {
+   String lineOfText = scanner.nextLine();
+   if (lineOfText.startsWith("//") || lineOfText.startsWith(" ")) {
+      continue; //Exit this iteration if line starts with space or /
+   }
+   System.out.println(lineOfText);
+}
+	 */
 	 
 }
 
