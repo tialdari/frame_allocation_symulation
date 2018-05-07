@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.File;
 import java.util.ArrayList;
 import data.Proces;
+import lru.LRU;
 
 public class Main {
 
@@ -16,18 +17,23 @@ public class Main {
 
 		int processNumber = 1;
 		
-		for(Proces process : parser.getAllProcesses()) {
-			
-			System.out.println("This is the process number" + processNumber);
-			
-			for(int i = 0; i < process.getPages().size(); i++) {
-				
-				System.out.println("page: " + process.getPages().get(i).getPageNumber());
-			}
-			
-			processNumber++;
-		}
+//		for(Proces process : parser.getAllProcesses()) {
+//			
+//			System.out.println("This is the process number" + processNumber);
+//			
+//			for(int i = 0; i < process.getPages().size(); i++) {
+//				
+//				System.out.println("page: " + process.getPages().get(i).getPageNumber());
+//			}
+//			
+//			processNumber++;
+//		}
 
+		
+		
+		LRU lru = new LRU();
+	
+		lru.doLRU(parser.getAllProcesses().get(0));
 	}
 
 }
