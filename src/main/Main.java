@@ -30,37 +30,37 @@ public class Main {
 //		}
 
 		int globalFaults = 0;
+		int procNum = 1;
+		int summedSize = 0;
+		double percentage;
+		int framesNum;
+		int framesNumGlobal = 0;
+		
 		
 		LRU lru = new LRU();
 		
 		for(Proces proc : parser.getAllProcesses()) {
-			globalFaults += lru.doLRU(proc);
-
-		}
-		
-		System.out.println("global faults: " + globalFaults);
-		
-		
-		
-		int procNum = 1;
-		
-		for(Proces proc : parser.getAllProcesses()) {
-
-			int size = 0;
-		
-			ArrayList<Integer> variousNumbers = new ArrayList<Integer>();
 			
-			for(int i = 0; i < proc.getPages().size(); i++) {
-				
-				if(!variousNumbers.contains(proc.getPages().get(i).getPageNumber())) {
-					variousNumbers.add(proc.getPages().get(i).getPageNumber());
-					size++;
-				}
-			}
-			
-			System.out.println("Process no " + procNum + " has size: " + size);
+			summedSize += proc.getProcSize();
+			percentage = (double) proc.getProcSize() / 326.0;
+			framesNum = (int)(percentage * 100);
+			framesNumGlobal +=framesNum;
+			proc.setFramesAmount(framesNum);
+			System.out.println("process no " + procNum + " size is: " + proc.getProcSize() + 
+					" and the percentage: " + percentage + "and the frames number: " + framesNum);
+
 			procNum++;
 		}
+		
+		for(Proces proc : parser.getAllProcesses()) {
+			
+			globalFaults += lru.doLRU(proc);
+			
+		}
+		
+		
+		System.out.println("Global faults: " + globalFaults);
+		
 	}
 
 }
