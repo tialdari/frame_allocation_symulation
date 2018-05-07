@@ -4,12 +4,12 @@ import java.util.List;
 
 public class Proces {
     private String process_name;
-    private List<Page> process_numbers;
+    private List<Page> pages;
 
 
-    public Proces(String process_name, List<Page> process_numbers){
+    public Proces(String process_name, List<Page> pages){
         this.process_name = process_name;
-        this.process_numbers = process_numbers;
+        this.pages = pages;
     }
 
     public String getProcess_name() {
@@ -20,12 +20,12 @@ public class Proces {
         this.process_name = process_name;
     }
 
-	public List<Page> getProcess_numbers() {
-		return process_numbers;
+	public List<Page> getPages() {
+		return pages;
 	}
 
-	public void setProcess_numbers(List<Page> process_numbers) {
-		this.process_numbers = process_numbers;
+	public void setProcess_numbers(List<Page> pages) {
+		this.pages = pages;
 	}
 
 }

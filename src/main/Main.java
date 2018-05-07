@@ -20,9 +20,9 @@ public class Main {
 			
 			System.out.println("This is the process number" + processNumber);
 			
-			for(int i = 0; i < process.getProcess_numbers().size(); i++) {
+			for(int i = 0; i < process.getPages().size(); i++) {
 				
-				System.out.println("page: " + process.getProcess_numbers().get(i).getPageNumber());
+				System.out.println("page: " + process.getPages().get(i).getPageNumber());
 			}
 			
 			processNumber++;
