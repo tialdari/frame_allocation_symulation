@@ -29,11 +29,38 @@ public class Main {
 //			processNumber++;
 //		}
 
-		
+		int globalFaults = 0;
 		
 		LRU lru = new LRU();
-	
-		lru.doLRU(parser.getAllProcesses().get(0));
+		
+		for(Proces proc : parser.getAllProcesses()) {
+			globalFaults += lru.doLRU(proc);
+
+		}
+		
+		System.out.println("global faults: " + globalFaults);
+		
+		
+		
+		int procNum = 1;
+		
+		for(Proces proc : parser.getAllProcesses()) {
+
+			int size = 0;
+		
+			ArrayList<Integer> variousNumbers = new ArrayList<Integer>();
+			
+			for(int i = 0; i < proc.getPages().size(); i++) {
+				
+				if(!variousNumbers.contains(proc.getPages().get(i).getPageNumber())) {
+					variousNumbers.add(proc.getPages().get(i).getPageNumber());
+					size++;
+				}
+			}
+			
+			System.out.println("Process no " + procNum + " has size: " + size);
+			procNum++;
+		}
 	}
 
 }

@@ -22,22 +22,22 @@ public class LRU {
 	       
 		    int n, recent = 0, pageFault = 0, nFrames;
 		        
-		    System.out.print("Enter the number of pages: ");
+		  //  System.out.print("Enter the number of pages: ");
 		     n = proces.getPages().size();
 		      
 		    int pageString[] = new int[n];
 		    
-		    System.out.print("Enter the page reference string: ");
+		  //  System.out.print("Enter the page reference string: ");
 		    
 		    for(int i = 0; i < n; i++) {
 		        pageString[i] = proces.getPages().get(i).getPageNumber();
 		    }
 		    
-		     System.out.print("\nEnter the number of frames: "); 
+		  //   System.out.print("\nEnter the number of frames: "); 
 		         
 		     	 nFrames = proces.getFramesAmount();
 		     	 
-			     System.out.print("\nNumber of frames is: " + nFrames); 
+			    // System.out.print("\nNumber of frames is: " + nFrames); 
 
 		         int frames[] = new int[nFrames];
 		         int counter[] = new int[nFrames];
@@ -87,15 +87,15 @@ public class LRU {
 		        }
 		         
 		        //print frames
-		       System.out.println();
+		     //  System.out.println();
 		      for(int j=0;j<nFrames;j++)
 		      {
-		           System.out.print(frames[j]+" ");
+		          // System.out.print(frames[j]+" ");
 		      }
 		       
 		    }
 		      
-		      System.out.print("\nPage Fault: "+pageFault);
+		      //System.out.print("\nPage Fault: "+pageFault);
 			     return pageFault;
 
 		    }
