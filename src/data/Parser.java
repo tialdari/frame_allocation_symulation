@@ -1,79 +1,76 @@
 package data;
 
-import java.util.ArrayList;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import data.Page;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.Scanner; 
-
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class Parser {
 	
-	private 	Scanner scanner;
-
+	
+	private File file;
+	private List<Process> allProcesses;
 	
 	public Parser() {
-		
-		File file = new File("processes.txt");
-		try {
-			scanner = new Scanner(file);
-		}catch(FileNotFoundException ex) {
-			System.out.println("File not found");
-		}
+		file = new File("processes.txt");
+		allProcesses = new ArrayList<Process>();
 	}
 	
 	public Parser(String fileName) {
+		file = new File(fileName);
+		allProcesses = new ArrayList<Process>();
+	}
+
+	
+	public List<Process> getAllProcesses() {
+		return allProcesses;
+	}
+
+	public void setAllProcesses(List<Process> allProcesses) {
+		this.allProcesses = allProcesses;
+	}
+
+	public void  read() {
 		
-		File file = new File(fileName);
 		try {
-			scanner = new Scanner(file);
-		}catch(FileNotFoundException ex) {
-			System.out.println("File not found");
-		}
-	}
-	
-	
-	public void read(){
-		
-		Process [] processes = new Process [11];
-		int processNumber = 0;
-		int nextNumber;
-		
-
-		
-		while(scanner.hasNext()) {
 			
-			 if(scanner.nextLine().startsWith("process")) {
-				processNumber++;
-				System.out.println("This is a process no: " + processNumber);
-				processes[processNumber] = new Process(); 		
+            Scanner sc = new Scanner(file);
 
-			}
-				nextNumber = scanner.nextInt();
-				processes[processNumber].getPagesSequence().add(new Page(nextNumber));
-				System.out.println("This is a page call of a process no " + processNumber + " : " + nextNumber);
+            String process_name = " ";
+            
+            String line = sc.nextLine();
 
-		 }
-		
+
+            while(sc.hasNextLine()) {
+
+                List<String> process_numbers = new ArrayList<String>();
+                if (line.matches(".*process.*")) {
+                    process_name = line;
+                    line = sc.nextLine();
+                }
+
+                while (!line.matches(".*process.*") && sc.hasNextLine()) {
+                    process_numbers.add(line);
+                    line = sc.nextLine();
+                }
+
+                Process o = new Process(process_name, process_numbers);
+                allProcesses.add(o);
+
+            }
+            
+            sc.close();
+            
+            
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
 	}
-	/*
-	 * while(scanner.hasNext()) {
-   String lineOfText = scanner.nextLine();
-   if (lineOfText.startsWith("//") || lineOfText.startsWith(" ")) {
-      continue; //Exit this iteration if line starts with space or /
-   }
-   System.out.println(lineOfText);
+        
+    
 }
-	 */
-	 
-}
-
-
-
-
 
 
 
