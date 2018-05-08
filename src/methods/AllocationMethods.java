@@ -21,11 +21,19 @@ public class AllocationMethods {
 	}
 	
 	
-	public int allocateEqually(Proces proces){
+	
+	public List<Proces> getProcesses() {
+		return processes;
+	}
+
+	public void setProcesses(List<Proces> processes) {
+		this.processes = processes;
+	}
+
+	public int pageFaults(Proces proces) {
 		
-		 
 		  int capacity = proces.getFramesAmount();
-		 
+			 
 	      HashSet<Integer> s = new HashSet<>(capacity);
 	      HashMap<Integer, Integer> indexes = new HashMap<>();
 	     
@@ -92,6 +100,22 @@ public class AllocationMethods {
 	        return page_faults;
 	}
 	
+	
+	public int doEqually(Proces proces){
+		
+		  framesEqually();
+		  return pageFaults(proces);
+		 
+	}	
+	
+	public int doProportionally(Proces proces){
+		
+		framesProportionally();
+		return pageFaults(proces);
+
+	}
+		
+	
 	public void framesEqually(){
 		
 		for(Proces proc : processes) {
@@ -103,15 +127,16 @@ public class AllocationMethods {
 		
 		double percentage;
 		int framesNum;
+		int procNum = 1;
 		
 		for(Proces proc : processes) {
 			
 			percentage = (double) proc.getProcSize() / 326.0;
 			framesNum = (int)(percentage * 100);
 			proc.setFramesAmount(framesNum);
-			//System.out.println("process no " + procNum + " size is: " + proc.getProcSize() + 
-			//		" and the percentage: " + percentage + "and the frames number: " + framesNum);
-
+			System.out.println("process no " + procNum + " size is: " + proc.getProcSize() + 
+					" and the percentage: " + percentage + "and the frames number: " + framesNum);
+			procNum++;
 		}
 		
 	}

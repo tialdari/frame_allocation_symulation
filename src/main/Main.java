@@ -47,12 +47,13 @@ public class Main {
 			procNum++;
 		}
 		
-		AllocationMethods am = new AllocationMethods();
+		AllocationMethods am = new AllocationMethods(parser.getAllProcesses());
 
+		
 		for(Proces proc : parser.getAllProcesses()) {
 			
 			System.out.println("A new process ");
-			globalFaults += am.allocateEqually(proc);
+			globalFaults += am.doProportionally(proc);
 			
 		}
 		System.out.println("Global faults for equal method: " + globalFaults);
