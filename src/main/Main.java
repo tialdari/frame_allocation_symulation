@@ -44,13 +44,30 @@ public class Main {
 		System.out.println("Global faults for local allocation method: " + globalFaults);
 		
 		globalFaults = 0;
+		int allFrames = 0;
 	
 		for(Proces proc : parser.getAllProcesses()) {
-			
-			globalFaults += am.doZoneModelAllocation(proc);
-			
+			allFrames += am.doZoneModel(proc);			
 		}
-		System.out.println("Global faults for zone model method: " + globalFaults);
+		
+		double percentage;
+		int framesNum;
+		int procNum = 1;
+		
+		for(Proces proc : parser.getAllProcesses()) {
+			
+			percentage = (double) proc.getFramesAmount() / allFrames;
+			framesNum = (int)(percentage * 100);
+			proc.setFramesAmount(framesNum);
+			//System.out.println("frames number: " + proc.getFramesAmount());
+			procNum++;
+		}
+		
+		for(Proces proc : parser.getAllProcesses()) {
+			globalFaults += am.doZoneModelAllocation(proc);			
+		}
+		
+		System.out.println("Global faults for zone model method: " + globalFaults + "all Frames: " + allFrames);
 	}
 
 }

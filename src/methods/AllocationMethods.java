@@ -255,16 +255,16 @@ public class AllocationMethods {
 		
 	}
 	
-	public void doZoneModel(Proces proces) {
+	public int doZoneModel(Proces proces) {
 		
-		
+			  System.out.println("process new");
 			  int capacity = proces.getFramesAmount();
 				 
 		      HashSet<Integer> s = new HashSet<>(capacity);
 		      HashMap<Integer, Integer> indexes = new HashMap<>();
 		      
 		      HashSet<Integer> workSet = new HashSet<>();
-		      int workWindow = 50;
+		      int workWindow = 40;
 		      int workWindowNum = 1;
 		      int workAreaSum = 0;
 		      int workArea;
@@ -278,7 +278,7 @@ public class AllocationMethods {
   	  			 // System.out.println("New page");
 
 
-		    	  		if(workWindow == 50) {
+		    	  		if(workWindow == 40 || i == proces.getPages().size() - 1) {
 		    	  			//System.out.println("New window");
 		    	  			workWindowNum++;
 		    	  			workAreaSum += workSet.size();
@@ -350,16 +350,17 @@ public class AllocationMethods {
 		            workWindow++;
 		        }
 		      	
-		      System.out.println("Work area: " + workAreaSum / workWindowNum);
 		       
 		      	workArea = workAreaSum / workWindowNum;
+		      	System.out.println("Work area: " + workArea);
 		      	proces.setFramesAmount(workArea);
+		      	
+		      	return workArea;
 		
 	}
 	
 	public int doZoneModelAllocation(Proces proc) {
-		
-				doZoneModel(proc);
+				
 		return pageFaults(proc);
 	}
 	
