@@ -138,8 +138,7 @@ public class AllocationMethods {
 	        	
 	        		if(windowSize == 7) {
 	        			
-		        			System.out.println("local page faults: " + localPageFault);
-			        		System.out.println("current frames no: " + proces.getFramesAmount());
+		        	
 	
 		        			
 		        			if(localPageFault > 4) {
@@ -148,13 +147,11 @@ public class AllocationMethods {
 		        				capacity = proces.getFramesAmount();
 		        				localPageFault = 0;
 			        			windowSize = 0;
-			        			System.out.println("frames no after change: " + proces.getFramesAmount());
 			        			
 		        			}else if(localPageFault < 2) {
 		        				
 		        				
 		        				if(capacity == 1) {
-		        					System.out.println("This is my only frame!");
 		        					localPageFault = 0;
 				        			windowSize = 0;
 		        					
@@ -163,7 +160,6 @@ public class AllocationMethods {
 		        					capacity = proces.getFramesAmount();
 			        				localPageFault = 0;
 				        			windowSize = 0;
-					        		System.out.println("frames no after change: " + proces.getFramesAmount());
 		        				}
 		        			}else {
 			        				localPageFault = 0;
@@ -254,8 +250,7 @@ public class AllocationMethods {
 			percentage = (double) proc.getProcSize() / 326.0;
 			framesNum = (int)(percentage * 100);
 			proc.setFramesAmount(framesNum);
-			System.out.println("process no " + procNum + " size is: " + proc.getProcSize() + 
-					" and the percentage: " + percentage + "and the frames number: " + framesNum);
+		
 			procNum++;
 		}
 		
