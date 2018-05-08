@@ -11,8 +11,8 @@ public class Proces {
     private int procSize;
 
 
-    public Proces(List<Page> pages){
-    		name = "process";
+    public Proces(String name, List<Page> pages){
+    		this.name = "process";
         this.pages = pages;
         framesAmount = 8;
         

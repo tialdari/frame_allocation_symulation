@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import data.Page;
+import methods.AllocationMethods;
 
 import data.Proces;
 
@@ -46,17 +47,18 @@ public class Main {
 			procNum++;
 		}
 		
+		AllocationMethods am = new AllocationMethods();
+
 		for(Proces proc : parser.getAllProcesses()) {
 			
 			System.out.println("A new process ");
-			globalFaults += pageFaults2(proc);
+			globalFaults += am.allocateEqually(proc);
 			
 		}
+		System.out.println("Global faults for equal method: " + globalFaults);
+
 		
 		
-		System.out.println("Global faults: " + globalFaults);
-		
-	
 	}
 
 	 
