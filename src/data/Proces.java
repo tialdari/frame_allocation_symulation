@@ -5,14 +5,14 @@ import java.util.List;
 
 public class Proces {
 	
-    private String process_name;
+	private String name;
     private List<Page> pages;
     private int framesAmount;
     private int procSize;
 
 
-    public Proces(String process_name, List<Page> pages){
-        this.process_name = process_name;
+    public Proces(List<Page> pages){
+    		name = "process";
         this.pages = pages;
         framesAmount = 8;
         
@@ -31,13 +31,15 @@ public class Proces {
 		procSize = size;
     }
 
-    public String getProcess_name() {
-        return process_name;
-    }
+    
 
-    public void setProcess_name(String process_name) {
-        this.process_name = process_name;
-    }
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	public List<Page> getPages() {
 		return pages;
