@@ -42,7 +42,15 @@ public class Main {
 			
 		}
 		System.out.println("Global faults for local allocation method: " + globalFaults);
-
+		
+		globalFaults = 0;
+	
+		for(Proces proc : parser.getAllProcesses()) {
+			
+			globalFaults += am.doZoneModelAllocation(proc);
+			
+		}
+		System.out.println("Global faults for zone model method: " + globalFaults);
 	}
 
 }
