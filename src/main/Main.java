@@ -53,7 +53,7 @@ public class Main {
 		for(Proces proc : parser.getAllProcesses()) {
 			
 			System.out.println("A new process ");
-			globalFaults += am.doProportionally(proc);
+			globalFaults += am.doLocalAllocation(proc);
 			
 		}
 		System.out.println("Global faults for equal method: " + globalFaults);
