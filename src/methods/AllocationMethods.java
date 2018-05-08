@@ -4,11 +4,22 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import data.Proces;
-
+import java.util.List;
+import java.util.ArrayList;
 import data.Proces;
 
 public class AllocationMethods {
 		
+	private List<Proces> processes;
+	
+	public AllocationMethods() {
+		processes = new ArrayList<Proces>();
+	}
+	
+	public AllocationMethods(List<Proces> processes) {
+		this.processes = processes;
+	}
+	
 	
 	public int allocateEqually(Proces proces){
 		
@@ -80,4 +91,30 @@ public class AllocationMethods {
 	        }
 	        return page_faults;
 	}
+	
+	public void framesEqually(){
+		
+		for(Proces proc : processes) {
+			proc.setFramesAmount(8);
+		}
+	}
+	
+	public void framesProportionally(){
+		
+		double percentage;
+		int framesNum;
+		
+		for(Proces proc : processes) {
+			
+			percentage = (double) proc.getProcSize() / 326.0;
+			framesNum = (int)(percentage * 100);
+			proc.setFramesAmount(framesNum);
+			//System.out.println("process no " + procNum + " size is: " + proc.getProcSize() + 
+			//		" and the percentage: " + percentage + "and the frames number: " + framesNum);
+
+		}
+		
+	}
+	
+	
 }
