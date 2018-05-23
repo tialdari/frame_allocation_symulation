@@ -264,7 +264,7 @@ public class AllocationMethods {
 		      HashMap<Integer, Integer> indexes = new HashMap<>();
 		      
 		      HashSet<Integer> workSet = new HashSet<>();
-		      int workWindow = 40;
+		      int workWindow = 10;
 		      int workWindowNum = 1;
 		      int workAreaSum = 0;
 		      int workArea;
@@ -278,7 +278,7 @@ public class AllocationMethods {
   	  			 // System.out.println("New page");
 
 
-		    	  		if(workWindow == 40 || i == proces.getPages().size() - 1) {
+		    	  		if(workWindow == 10 || i == proces.getPages().size() - 1) {
 		    	  			//System.out.println("New window");
 		    	  			workWindowNum++;
 		    	  			workAreaSum += workSet.size();
